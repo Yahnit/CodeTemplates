@@ -1,0 +1,7 @@
+int compare(const void* a,const void * b)
+{
+	int *studentA=(int *)a;
+	int *studentB=(int *)b;
+	return(studentA->val-studentB->val);
+}
+qsort(arr_name,size,sizeof(int),compare);

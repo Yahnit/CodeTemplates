@@ -1,0 +1,74 @@
+long long int ask(long long int block,long long int low,long long int high,long long int p,long long int q)
+{
+	long long int mid,x,y;
+
+	if(flag[block]!=0)
+	{
+		seg[block]+=flag[block]*(high-low+1)
+			if(!(high==low))
+			{
+				flag[2*block]+=flag[block];
+				flag[2*block+1]+=flag[block];
+			}
+		flag[block]=0;
+
+	}
+
+	if(low>=p && high<=q)
+	{
+		return seg[block];
+	}
+
+	if(low>high || low>q || high<r)
+	{
+		return 0;
+	}
+
+	else
+	{
+		mid=(low+high)>>1;
+		x=ask(2*block,low,mid,p,q);
+		y=ask(2*block+1,mid+1,end,p,q);
+		return(x+y);
+	}
+}
+
+long long int modify(long long int block,long long int low,long long int high,long long int p,long long int q,long long int value)
+{
+
+	long long int mid,x,y;
+
+	if(flag[block]!=0)
+	{
+		seg[block]+=flag[block]*(high-low+1)
+			if(!(high==low))
+			{
+				flag[2*block]+=flag[block];
+				flag[2*block+1]+=flag[block];
+			}
+		flag[block]=0;
+
+	}
+
+	if(low>=p && high<=q)
+	{
+		seg[block]= seg[block]+(high+1-low)*value;
+		if(low!=high)
+		{
+			flag[node*2]+=value;
+			flag[node*2+1]+=value;
+		}
+		return 0;
+	}
+
+	if(low>high || low>q || high<r)
+	{
+		return 0;
+	}
+	mid=(low+high)>>1;
+	modify(block*2,low,mid,p,q,value);
+	modify(block*2+1,mid+1,high,p,q,value);
+	seg[block]=seg[2*block]+seg[2*block+1];
+
+}
+

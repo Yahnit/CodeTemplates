@@ -1,0 +1,36 @@
+long long int lower_bound(long long int a[],long long int high, long long int n)
+{
+	long long int res=high+1;
+	long long int mid,low=0;
+	while(low<=high)
+	{
+		mid=(low+high)>>1;
+		if(a[mid]<n)
+			low=mid+1;
+		else
+		{
+			res=mid;
+			high=mid-1;
+		}
+	}
+	return res+1;
+}
+
+
+long long int upper_bound(long long int a[], long long int high, long long int n)
+{
+	long long int res=high+1;
+	long long int mid,low=0;
+	while(low<=high)
+	{
+		mid=(low+high)>>1;
+		if(a[mid]<=n)
+		  low=mid+1;
+		else
+		{
+			res=mid;
+		  high=mid-1;
+		}
+	}
+	return res+1;
+}

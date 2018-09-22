@@ -1,0 +1,39 @@
+void insert(long long int heap[100001],long long int max,long long int z)
+{
+
+	while (max>=1)
+	{
+		long long int parent=(max-1)>>1;
+		if (z<=heap[parent])
+		{
+			heap[max]= z;
+			return;
+		}
+		heap[max] = heap[parent];
+		max= parent;
+	}
+	heap[0]=z;
+	
+}
+
+long long int max_heap(long long int heap[100001], long long int n, long long int i)
+
+{
+
+	long long int big=i,left=2*i+1,right=2*i+2;
+
+	if (right<n && heap[right] > heap[big])
+		big=right;
+
+	if (left<n && heap[left]> heap[big])
+		big=left;
+
+	tp=heap[i];
+	heap[i]=heap[big];
+	heap[big]=tp;
+
+	if(big!=i) max_heap(heap,n,big);
+
+	return 0;
+
+}

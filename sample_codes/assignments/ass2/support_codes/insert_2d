@@ -1,0 +1,42 @@
+long long int min_heap(long long int heap[100001][2], long long int n, long long int i)
+{
+	long long int small=i,left=2*i+1,right=2*i+2;
+	if (right<n && heap[right][1]<heap[small][1])
+		small=right;
+	if (left<n && heap[left][1]<heap[small][1])
+		small=left;
+	//	swap(&heap[i],&heap[small]);
+	//	swap(heap[i][0],heap[small][0]);
+
+	per=heap[i][0];
+	heap[i][0]=heap[small][0];
+	heap[small][0]=per;
+
+	per=heap[i][1];
+	heap[i][1]=heap[small][1];
+	heap[small][1]=per;
+
+	if(small!=i) min_heap(heap,n,small);
+	return 0;
+}
+
+
+void insert(long long int size,long long int a,long long int b)
+{
+	while (size>=1)
+	{
+		long long int parent=(size-1)/2;
+		if (a>=heap[parent][1])
+		{
+			heap[size][1] = a;
+			heap[size][0] = b;
+			return;
+		}
+		heap[size][1] = heap[parent][1];
+		heap[size][0] = heap[parent][0];
+		size=parent;
+	}
+	heap[0][1]=a;
+	heap[0][0]=b;
+}
+

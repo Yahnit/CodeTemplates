@@ -1,0 +1,18 @@
+void insert(int heap[][100],int max,int a,int b)
+{
+    while (max>=1)
+    {
+       int parent=(max-1)>>1;
+        if (a>=heap[parentnode][1])
+        {
+            heap[max][1] = a;
+            heap[max][0] = b;
+            return;
+        }
+        heap[max][1] = heap[parent][1];
+        heap[max][0] = heap[parent][0];
+        max= parent;
+    }
+    heap[0][1]=a;
+	heap[0][0]=b;
+}
