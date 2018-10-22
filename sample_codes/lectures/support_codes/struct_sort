@@ -1,8 +1,0 @@
-int compare(const void* a,const void * b)
-{
-	datatyp *studentA=(datatyp *)a;
-	datatyp *studentB=(datatyp *)b;
-	return(studentA->val-studentB->val);
-}
-
-qsort(res,size,sizeof(temp),compare);
