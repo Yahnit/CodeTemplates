@@ -1,1 +1,58 @@
 g++ -std=c++11 string.cpp
+
+#include<iostream>
+using namespace std;
+#include<bits/stdc++.h>
+int dp[109][10000];
+
+int subsetSum(int dp[109][10000], int a[], int n, int sum){
+    if(dp[n][sum] != -1)
+        return dp[n][sum];
+
+    if(sum == 0){
+        dp[n][sum] = 1;
+        return 1;
+    }
+
+    if(n == 0){
+        dp[n][sum] = 0;
+        return 0;
+    }
+    int x = 0;
+    if(sum - a[n-1] >= 0){
+        dp[n-1][sum - a[n-1]] = subsetSum(dp, a, n-1, sum- a[n-1]);
+        x = dp[n-1][sum - a[n-1]];
+    }
+    dp[n-1][sum] = subsetSum(dp, a, n-1, sum);
+    dp[n][sum] = x || dp[n-1][sum];
+
+    return dp[n][sum];
+}
+
+int main()
+ {
+    int t;
+    cin >> t;
+    while(t--){
+        int n, a[109];
+        cin >> n;
+        int sum = 0;
+        for(int i=0;i<n;i++){
+            cin >> a[i];
+            sum += a[i];
+        }
+        for(int i=0;i<=108;i++)
+            for(int j=0;j<=9999;j++)
+                dp[i][j] = -1;
+        if(sum%2){
+            cout << "NO" << endl;
+            return 0;
+        }
+        bool ans = subsetSum(dp, a, n, sum/2);
+        if(ans)
+            cout << "YES" << endl;
+        else
+            cout << "NO" << endl;
+    }
+	return 0;
+}

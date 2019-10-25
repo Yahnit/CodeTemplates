@@ -1,8 +1,8 @@
-void insert(long long int heap[100001],long long int max,long long int z)
+void insert(int heap[100001],int max,int z)
 {
 	while (max>=1)
 	{
-		long long int parent=(max-1)>>1;
+		int parent=(max-1)>>1;
 		if (z<=heap[parent])
 		{
 			heap[max]= z;
@@ -15,9 +15,9 @@ void insert(long long int heap[100001],long long int max,long long int z)
 	return;
 }
 
-long long int max_heap(long long int heap[100001], long long int n, long long int i)
+int max_heap(int heap[100001], int n, int i)
 {
-	long long int big=i,left=2*i+1,right=2*i+2;
+	int big=i,left=2*i+1,right=2*i+2;
 	if (right<n && heap[right] > heap[big])
 		big=right;
 	if (left<n && heap[left]> heap[big])

@@ -51,13 +51,16 @@ int query(int block,int low,int high,int p,int q)
   if(p<=low && high<=q)
 		return seg[block];
 	else if(q<low || high<p)
-		return 0;
+		return 0; 		// INT_MAX if we are finding min elements
+		// 0 if sum of range
+		// INT_MIN if max element
 
   mid=(high+low)>>1;
 
   // CHANGE IT ACCORDING TO UR NEED
 	return query(2*block,low,mid,p,q) + query(2*block+1,mid+1,high,p,q);
 }
+
 
 int main()
 {

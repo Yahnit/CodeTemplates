@@ -18,7 +18,7 @@ void bfs(int node, bool visited[], list <int>adj[]){
         visited[*i] = true;
         queue.push_back(*i);
       }
-      }
+    }
   }
   return;
 }

@@ -1,40 +1,40 @@
 #include<iostream>
 using namespace std;
 
-int upper_bound(int a[], int high, int n)
-{
-	int res=high+1;
-	int mid,low=0;
-	while(low<=high)
-	{
-		mid=(low+high)>>1;
-		if(a[mid]<=n)
-		  low=mid+1;
-		else
-		{
-			res=mid;
-		  high=mid-1;
+int lowerBound(int a[], int n, int ele){
+	int l = 0, r = n-1;
+	int ans = n;
+
+	while(l <= r){
+		int mid = (l+r) >> 1;
+
+		if(a[mid] < ele){
+			l = mid + 1;
+		}
+		else{
+			r = mid - 1;
+			ans = mid;
 		}
 	}
-	return res;
+	return ans;
 }
 
-int lower_bound(int a[], int high, int n)
-{
-	int res=high+1;
-	int mid,low=0;
-	while(low<=high)
-	{
-		mid=(low+high)>>1;
-		if(a[mid]<n)
-		  low=mid+1;
-		else
-		{
-			res=mid;
-		  high=mid-1;
+int upperBound(int a[], int n, int ele){
+	int l = 0, r = n-1;
+	int ans = n;
+
+	while(l <= r){
+		int mid = (l+r) >> 1;
+
+		if(a[mid] <= ele){
+			l = mid + 1;
+		}
+		else{
+			r = mid - 1;
+			ans = mid;
 		}
 	}
-	return res-1;
+	return ans;
 }
 
 int bin_search(int arr[], int n, int a){
@@ -58,7 +58,7 @@ int main()
   for(i=0;i<n;i++)
     scanf("%d",&arr[i]);
 
-  int bound = upper_bound(arr,n-1,a);
+  int bound = lowerBound(arr,n,a);
   cout << bound << endl;
 
 // there = bin_search(arr,n,a);

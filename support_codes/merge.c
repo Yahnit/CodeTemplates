@@ -9,10 +9,10 @@ void merging(long long int a[],long long int low, long long int mid, long long i
 			b[i] = a[l2++];
 	}
 
-	while(l1 <= mid)    
+	while(l1 <= mid)
 		b[i++] = a[l1++];
 
-	while(l2 <= high)   
+	while(l2 <= high)
 		b[i++] = a[l2++];
 
 	for(i = low; i <= high; i++)
@@ -27,8 +27,6 @@ void sort(long long int a[],long long int low, long long int high) {
 		sort(a,low, mid);
 		sort(a,mid+1, high);
 		merging(a,low, mid, high);
-	} else { 
+	}
 		return;
-	}   
 }
-
